@@ -84,7 +84,7 @@ function getDetail(first,num,e) {
     contentType: "application/json;charset=UTF-8",
     data: JSON.stringify({
       orderId: e,
-      pageSize: 1,
+      pageSize: 5,
       pageNum: num
     }),
     success: function (res) {
@@ -130,7 +130,7 @@ function changePage2(el, orderId) {
     laypage.render({
       elem: el,
       count: tableLength2,
-      limit: 1,
+      limit: 5,
       first: '首页',
       last: '尾页',
       prev: '<em>←</em>',
