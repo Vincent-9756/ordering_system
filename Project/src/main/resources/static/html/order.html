@@ -30,8 +30,50 @@
           <span class="closeStudentBox">x</span>
         </div>
         <div class="student-body">
-          <form class="layui-form" id="detailBox" action="" lay-filter="example">
-          </form>
+          <div class="layui-form">
+            <table class="layui-table">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>菜名</th>
+                  <th>数量</th>
+                  <th>单价</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="studentTable">
+              </tbody>
+            </table>
+            <div id="pagetion2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="dialog2">
+        <div class="messageDetail">
+          <div class="message-title">
+            用户留言
+          </div>
+          <div class="message-detail-close">x</div>
+          <div class="addMessageBox">
+            <textarea id="addMsgContent" cols="30" rows="10" placeholder="请输入你的评价"></textarea>
+            <button id="addMsg">发送</button>
+          </div>
+          <div class="message-detail" id="message-detail">
+          </div>
+        </div>
+      </div>
+      <div class="dialog3">
+        <div class="messageDetail">
+          <div class="message-title">
+            用户投诉
+          </div>
+          <div class="message-detail-close">x</div>
+          <div class="addMessageBox">
+            <textarea id="addMsgContent" cols="30" rows="10" placeholder="请输入你的投诉内容"></textarea>
+            <button id="addMsg">发送</button>
+          </div>
+          <div class="message-detail" id="message-detail">
+          </div>
         </div>
       </div>
     </div>

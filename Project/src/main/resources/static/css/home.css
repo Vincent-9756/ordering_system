@@ -210,9 +210,9 @@ body::-webkit-scrollbar {
 }
 
 .rstblock-activity i:hover {
-  width: 50px!important;
+  width: 80px!important;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 30px;
 }
 
 #pagetion {

@@ -304,8 +304,8 @@ function getMenu(first) {
           '<div class="rstblock-content">\n' +
           '<div class="rstblock-title">' + res.data[index].name + '</div>\n' +
           '<div class="rstblock-activity">\n' +
-          '<i class="menuBtn1" style="width:40px;background:#fff;color:#999999;border:1px solid;padding:0;" value="' + res.data[index].id + '">投诉</i>\n' +
-          '<i class="menuBtn2" style="width:40px;background:#fff;color:#999999;border:1px solid;padding:0;" value="' + res.data[index].id + '">评价</i>\n' +
+          '<i class="menuBtn1" style="width:70px;background:#fff;color:#999999;border:1px solid;padding:0;" value="' + res.data[index].id + '">查看投诉</i>\n' +
+          '<i class="menuBtn2" style="width:70px;background:#fff;color:#999999;border:1px solid;padding:0;" value="' + res.data[index].id + '">查看评价</i>\n' +
           '</div>\n' +
           '</div>\n' +
           '</a>'
@@ -335,54 +335,21 @@ function getMsg() {
     }),
     success: function (res) {
       console.log(res)
+      if (res.total == 0) {
+        layer.msg('暂无评价！')
+      }
       let data = '';
       for (let index = 0; index < res.data.length; index++) {
         data += '<div class="msgBox">' +
           '<div class="user_name">用户名：' + res.data[index].clientName + '</div>' +
           '<div class="user_msg">内容：' + res.data[index].message + '</div>' +
           '<div class="user_time">评价时间：' + res.data[index].leaveDate + '</div>' +
-          '<div class="deleteMsg" value="' + res.data[index].id + '">删除评价</div>' +
           '</div>'
       }
       $('#message-detail').empty().append(data);
     }
   });
 }
-
-// 添加评价
-$('#addMsg').click(function () {
-  $.ajax({
-    type: "post",
-    url: url + port + "/leaveMessage/addLeaveMessage",
-    dataType: "json",
-    contentType: "application/json;charset=UTF-8",
-    data: JSON.stringify({
-      "clientId": Number(getCookie('userid')),
-      "dishId": Number(dishId),
-      "message": $('#addMsgContent').val(),
-      "type": "1"
-    }),
-    success: function (res) {
-      $('#addMsgContent').val('');
-      getMsg();
-    }
-  });
-});
-
-//删除评价
-$('body').on('click', '.deleteMsg', function () {
-  $.ajax({
-    type: "get",
-    url: url + port + "/leaveMessage/delLeaveMessageById?id=" + $(this).attr('value'),
-    dataType: "json",
-    contentType: "application/json;charset=UTF-8",
-    success: function () {
-      layer.msg('删除成功');
-      $('#message-detail').empty();
-      getMsg();
-    }
-  });
-});
 
 // 获取投诉
 $('body').on('click', '.menuBtn1', function (e) {
@@ -404,54 +371,21 @@ function getMsgType() {
     }),
     success: function (res) {
       console.log(res)
+      if (res.total == 0) {
+        layer.msg('暂无投诉！')
+      }
       let data = '';
       for (let index = 0; index < res.data.length; index++) {
         data += '<div class="msgBox">' +
           '<div class="user_name">用户名：' + res.data[index].clientName + '</div>' +
           '<div class="user_msg">内容：' + res.data[index].message + '</div>' +
           '<div class="user_time">投诉时间：' + res.data[index].leaveDate + '</div>' +
-          '<div class="deleteMsg" value="' + res.data[index].id + '">删除投诉</div>' +
           '</div>'
       }
       $('.dialog3 #message-detail').empty().append(data);
     }
   });
 }
-
-// 添加投诉
-$('.dialog3 #addMsg').click(function () {
-  $.ajax({
-    type: "post",
-    url: url + port + "/leaveMessage/addLeaveMessage",
-    dataType: "json",
-    contentType: "application/json;charset=UTF-8",
-    data: JSON.stringify({
-      "clientId": Number(getCookie('userid')),
-      "dishId": Number(dishId),
-      "message": $('.dialog3 #addMsgContent').val(),
-      "type": "2"
-    }),
-    success: function (res) {
-      $('.dialog3 #addMsgContent').val('');
-      getMsgType();
-    }
-  });
-});
-
-//删除投诉
-$('body').on('click', '.dialog3 .deleteMsg', function () {
-  $.ajax({
-    type: "get",
-    url: url + port + "/leaveMessage/delLeaveMessageById?id=" + $(this).attr('value'),
-    dataType: "json",
-    contentType: "application/json;charset=UTF-8",
-    success: function () {
-      layer.msg('删除成功');
-      $('.dialog3 #message-detail').empty();
-      getMsgType();
-    }
-  });
-});
 
 //获取菜单详情
 $('body').on('click', '.rstblock', function () {
