@@ -110,8 +110,8 @@ function getDetail(first,num,e) {
           '</td>\n' +
           '<td>\n' +
           '<div class="operate">\n' +
-          '<span class="complaint" value="' + res.data[index].id + '">投诉</span>\n' +
-          '<span class="evaluate" value="' + res.data[index].id + '">评价</span>\n' +
+          '<span class="complaint" value="' + res.data[index].dishId + '">投诉</span>\n' +
+          '<span class="evaluate" value="' + res.data[index].dishId + '">评价</span>\n' +
           '</div>\n' +
           '</td>\n' +
           '</tr>\n'
